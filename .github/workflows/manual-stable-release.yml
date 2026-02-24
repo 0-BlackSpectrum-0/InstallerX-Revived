@@ -41,10 +41,9 @@ jobs:
         run: |
           PROJECT_NAME="InstallerX-Revived"
           VERSION_TAG="${{ inputs.version_tag }}"
-          for FLAVOR in online offline; do
-            # Changed 'release' to 'debug'
+          # Removed 'online' from the list below
+          for FLAVOR in offline; do
             APK_DIR="app/build/outputs/apk/${FLAVOR}Stable/debug/"
-            
             ORIGINAL_APK=$(find "$APK_DIR" -maxdepth 1 -type f -name "*.apk" | head -n 1)
 
             if [ -z "$ORIGINAL_APK" ]; then
@@ -55,18 +54,13 @@ jobs:
 
             NEW_APK_NAME="${PROJECT_NAME}-${FLAVOR}-${VERSION_TAG}.apk"
             NEW_APK_PATH="${APK_DIR}${NEW_APK_NAME}"
-
-            echo "Renaming $ORIGINAL_APK -> $NEW_APK_PATH"
             mv "$ORIGINAL_APK" "$NEW_APK_PATH"
-          done
-                
+          done                
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           name: "InstallerX Revived stable ${{ inputs.version_tag }}"
           tag_name: ${{ inputs.version_tag }}
           body: ${{ inputs.changelog }}
-          prerelease: false
           files: |
-            app/build/outputs/apk/onlineStable/debug/InstallerX-Revived-online-${{ inputs.version_tag }}.apk
             app/build/outputs/apk/offlineStable/debug/InstallerX-Revived-offline-${{ inputs.version_tag }}.apk
