@@ -47,7 +47,7 @@ android {
     }
 
     signingConfigs {
-        getByName("debug") {
+        /*getByName("debug") {
             keyAlias = keystoreProps.getProperty("keyAlias")
             keyPassword = keystoreProps.getProperty("keyPassword")
             storeFile = rootProject.file(keystoreProps["storeFile"] as String)
@@ -63,11 +63,11 @@ android {
             storePassword = keystoreProps.getProperty("storePassword")
             enableV1Signing = true
             enableV2Signing = true
-        }
+        }*/
     }
 
     buildTypes {
-        getByName("debug") {
+        /*getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
             isMinifyEnabled = false
             proguardFiles(
@@ -84,18 +84,18 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-        }
+        }*/
     }
 
     flavorDimensions.addAll(listOf("connectivity", "level"))
 
     productFlavors {
-        create("online") {
+        /*create("online") {
             dimension = "connectivity"
             // Set the build config field for this flavor.
             buildConfigField("boolean", "INTERNET_ACCESS_ENABLED", "true")
             isDefault = true
-        }
+        }*/
 
         create("offline") {
             dimension = "connectivity"
@@ -103,14 +103,14 @@ android {
             buildConfigField("boolean", "INTERNET_ACCESS_ENABLED", "false")
         }
 
-        create("Unstable") {
+        /*create("Unstable") {
             dimension = "level"
             isDefault = true
         }
 
         create("Preview") {
             dimension = "level"
-        }
+        }*/
 
         create("Stable") {
             dimension = "level"
