@@ -14,10 +14,10 @@ plugins {
 android {
     compileSdk = 36
     // 加载 keystore.properties
-    val keystorePropertiesFile = rootProject.file("keystore.properties")
+    /*val keystorePropertiesFile = rootProject.file("keystore.properties")
     val keystoreProps = Properties().apply {
         load(FileInputStream(keystorePropertiesFile))
-    }
+    }*/
     defaultConfig {
         // 你如果根据InstallerX的源码进行打包成apk或其他安装包格式
         // 请换一个applicationId，不要和官方的任何发布版本产生冲突。
