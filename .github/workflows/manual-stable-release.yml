@@ -1,13 +1,13 @@
-name: Manual Stable Release
+name: Manual Release
 
 on:
   workflow_dispatch:
     inputs:
       version_tag:
-        description: '输入版本标签 (例如 v2.2.3)'
+        description: 'Version Tag'
         required: true
       changelog:
-        description: '填写更新日志 (支持 Markdown)'
+        description: 'Markdown'
         required: true
         type: string
 
@@ -33,26 +33,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
-      - name: Verify Keystore
-        run: |
-          if [ -z "${{ secrets.SIGNING_KEY_STORE_BASE64 }}" ]; then
-            echo "ERROR: SIGNING_KEY_STORE_BASE64 secret is missing"
-            exit 1
-          fi
-
-      - name: Setup Signing Keys
-        run: |
-          mkdir -p keystore
-          echo "${{ secrets.SIGNING_KEY_STORE_BASE64 }}" | base64 --decode > keystore/carlyu.jks
-          cat <<EOF > keystore.properties
-          storeFile=keystore/carlyu.jks
-          keyAlias=${{ secrets.SIGNING_KEY_ALIAS }}
-          keyPassword=${{ secrets.SIGNING_KEY_PASSWORD }}
-          storePassword=${{ secrets.SIGNING_STORE_PASSWORD }}
-          EOF
-
       - name: Build Stable Release APKs
-        run: ./gradlew assembleOnlineStableRelease assembleOfflineStableRelease
+        run: ./gradlew assembleDebug
 
       - name: Find and Rename Universal APKs
         id: rename_apk
@@ -84,5 +66,4 @@ jobs:
           body: ${{ inputs.changelog }}
           prerelease: false
           files: |
-            app/build/outputs/apk/onlineStable/release/InstallerX-Revived-online-${{ inputs.version_tag }}.apk
             app/build/outputs/apk/offlineStable/release/InstallerX-Revived-offline-${{ inputs.version_tag }}.apk
