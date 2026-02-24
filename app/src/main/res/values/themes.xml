@@ -7,6 +7,8 @@
         <item name="android:windowIsTranslucent">true</item>
         <!--沉浸状态栏和导航栏-->
         <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <!--<style name="Theme.Installer.Starting" parent="Theme.SplashScreen">

@@ -3,6 +3,8 @@
 
     <style name="Theme.Installer" parent="Theme.Material3.DayNight">
         <!--    Compat Navigation Bar Color when ModalBottomSheet activated    -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:enforceNavigationBarContrast">false</item>
     </style>
 </resources>
