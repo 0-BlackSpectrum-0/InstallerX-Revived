@@ -42,6 +42,11 @@ jobs:
           echo "keyPassword=dummy" >> keystore.properties
           echo "storePassword=dummy" >> keystore.properties
 
+      - name: Increase Memory for Kotlin
+        run: |
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g" >> gradle.properties
+          echo "kotlin.daemon.jvmargs=-Xmx4g" >> gradle.properties
+
       - name: Build Stable Release APKs
         run: ./gradlew assembleDebug
 
