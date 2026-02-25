@@ -12,22 +12,22 @@ plugins {
 android {
     compileSdk = 36
 
-    val properties = Properties()
+    /*val properties = Properties()
     val keystorePropertiesFile = rootProject.file("keystore.properties")
     if (keystorePropertiesFile.exists()) {
         try {
             properties.load(keystorePropertiesFile.inputStream())
         } catch (e: Exception) {
             println("Warning: Could not load keystore.properties file: ${e.message}")
-        }
+        }*/
     }
-    val storeFile = properties.getProperty("storeFile") ?: System.getenv("KEYSTORE_FILE")
+   /* val storeFile = properties.getProperty("storeFile") ?: System.getenv("KEYSTORE_FILE")
     val storePassword =
         properties.getProperty("storePassword") ?: System.getenv("KEYSTORE_PASSWORD")
     val keyAlias = properties.getProperty("keyAlias") ?: System.getenv("KEY_ALIAS")
     val keyPassword = properties.getProperty("keyPassword") ?: System.getenv("KEY_PASSWORD")
     val hasCustomSigning =
-        storeFile != null && storePassword != null && keyAlias != null && keyPassword != null
+        storeFile != null && storePassword != null && keyAlias != null && keyPassword != null*/
 
     defaultConfig {
         // 你如果根据InstallerX的源码进行打包成apk或其他安装包格式
@@ -51,7 +51,7 @@ android {
     }
 
     signingConfigs {
-        if (hasCustomSigning) {
+       /* if (hasCustomSigning) {
             register("releaseCustom") {
                 this.storeFile = rootProject.file(storeFile)
                 this.storePassword = storePassword
@@ -62,11 +62,11 @@ android {
                 enableV3Signing = true
                 enableV4Signing = false
             }
-        }
+        }*/
     }
 
     buildTypes {
-        getByName("debug") {
+       /* getByName("debug") {
             signingConfig =
                 if (hasCustomSigning) {
                     println("Applying 'releaseCustom' signing to debug build.")
@@ -97,18 +97,18 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-        }
+        }*/
     }
 
     flavorDimensions.addAll(listOf("connectivity", "level"))
 
     productFlavors {
-        create("online") {
+       /* create("online") {
             dimension = "connectivity"
             // Set the build config field for this flavor.
             buildConfigField("boolean", "INTERNET_ACCESS_ENABLED", "true")
             isDefault = true
-        }
+        }*/
 
         create("offline") {
             dimension = "connectivity"
@@ -116,14 +116,14 @@ android {
             buildConfigField("boolean", "INTERNET_ACCESS_ENABLED", "false")
         }
 
-        create("Unstable") {
+       /* create("Unstable") {
             dimension = "level"
             isDefault = true
         }
 
         create("Preview") {
             dimension = "level"
-        }
+        }*/
 
         create("Stable") {
             dimension = "level"
@@ -131,8 +131,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_25
-        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_21
     }
 
     buildFeatures {
@@ -149,7 +149,7 @@ android {
 }
 
 kotlin {
-    jvmToolchain(25)
+    jvmToolchain(21)
 }
 
 androidComponents {
