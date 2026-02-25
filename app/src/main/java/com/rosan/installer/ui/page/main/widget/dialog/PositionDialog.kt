@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 
-const val black = Color(0xFF000000)
 
 @Composable
 fun PositionDialog(
@@ -85,7 +84,7 @@ fun PositionDialog(
                 Surface(
                     modifier = modifier,
                     shape = shape,
-                    color = back,
+                    color = containerColor,
                     tonalElevation = tonalElevation
                 ) {
                     Box(
