@@ -13,7 +13,6 @@ import com.rosan.installer.data.installer.repo.InstallerRepo
 import com.rosan.installer.ui.page.main.widget.dialog.PositionDialog
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun DialogPage(
@@ -38,8 +37,6 @@ fun DialogPage(
         modifier = Modifier.alpha(alpha)
     ) {
         PositionDialog(
-            containerColor = background,
-            tonalElevation = 0.dp,
             onDismissRequest = {
                 if (viewModel.isDismissible) {
                     // Only allow dismiss if the current state is dismissible
