@@ -13,6 +13,7 @@ import com.rosan.installer.data.installer.repo.InstallerRepo
 import com.rosan.installer.ui.page.main.widget.dialog.PositionDialog
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun DialogPage(
