@@ -43,7 +43,7 @@ fun PositionDialog(
     properties: DialogProperties = DialogProperties(),
     onDismissRequest: () -> Unit,
     shape: Shape = AlertDialogDefaults.shape,
-    containerColor: Color = background,
+    containerColor: Color = MaterialTheme.colorScheme.background,
     iconContentColor: Color = AlertDialogDefaults.iconContentColor,
     titleContentColor: Color = AlertDialogDefaults.titleContentColor,
     textContentColor: Color = AlertDialogDefaults.textContentColor,
