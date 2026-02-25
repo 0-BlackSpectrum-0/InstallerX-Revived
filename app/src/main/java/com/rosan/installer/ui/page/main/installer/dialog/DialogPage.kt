@@ -38,7 +38,7 @@ fun DialogPage(
         modifier = Modifier.alpha(alpha)
     ) {
         PositionDialog(
-            containerColor = androidx.compose.material3.MaterialTheme.colorScheme.surfaceContainerHigh,
+            containerColor = background,
             tonalElevation = 0.dp,
             onDismissRequest = {
                 if (viewModel.isDismissible) {
